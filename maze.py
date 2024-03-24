@@ -177,7 +177,7 @@ def actions_prey(maze, original, game_turn):
                 action = random.randint(1, 6)
 
                 if action == 1: # do nothing
-                    pass
+                    continue
 
                 elif action == 2: # go up
 
@@ -189,7 +189,7 @@ def actions_prey(maze, original, game_turn):
                         maze[i - 1][j] = 7
 
                     else:
-                        pass
+                        continue
 
                 elif action == 3: # go left
 
@@ -201,7 +201,7 @@ def actions_prey(maze, original, game_turn):
                         maze[i][j - 1] = 7
 
                     else:
-                        pass
+                        continue
 
                 elif action == 4: # go down
 
@@ -213,7 +213,7 @@ def actions_prey(maze, original, game_turn):
                         maze[i + 1][j] = 7
 
                     else:
-                        pass
+                        continue
 
                 elif action == 5: # go right
 
@@ -225,9 +225,9 @@ def actions_prey(maze, original, game_turn):
                         maze[i][j + 1] = 7
 
                     else:
-                        pass
+                        continue
 
-                elif action == 6: # Open or close a door nearby
+                elif action == 6: # Open or close doors nearby
 
                     if maze[i - 1][j] == 4:
                         maze[i - 1][j] == 5
@@ -262,7 +262,7 @@ def actions_prey(maze, original, game_turn):
                         original[i][j + 1] == 4
 
                     else:
-                        pass
+                        continue
     return maze
 
 def move(maze, original):
@@ -301,7 +301,7 @@ def move(maze, original):
             x, y = pos_exit(original)
             maze[x][y] = original[x][y]
 
-        if keyboard.read_key() == "z":
+        if keyboard.read_key() == "z": # for move (with AZERTY keyboard)
 
             if maze[i - 1][j] == 4:
                 maze[i][j] = 1
@@ -315,7 +315,7 @@ def move(maze, original):
                 maze[i][j] = 1
                 maze[i - 1][j] = 6
 
-        elif keyboard.read_key() == "q":
+        elif keyboard.read_key() == "q": # for move (with AZERTY keyboard)
 
             if maze[i][j - 1] == 4:
                 maze[i][j] = 1
@@ -329,7 +329,7 @@ def move(maze, original):
                 maze[i][j] = 1
                 maze[i][j - 1] = 6
 
-        elif keyboard.read_key() == "s":
+        elif keyboard.read_key() == "s": # for move (with AZERTY keyboard)
 
             if maze[i + 1][j] == 4:
                 maze[i][j] = 1
@@ -343,7 +343,7 @@ def move(maze, original):
                 maze[i][j] = 1
                 maze[i + 1][j] = 6
 
-        elif keyboard.read_key() == "d":
+        elif keyboard.read_key() == "d": # for move (with AZERTY keyboard)
 
             if maze[i][j + 1] == 4:
                 maze[i][j] = 1
@@ -357,7 +357,7 @@ def move(maze, original):
                 maze[i][j] = 1
                 maze[i][j + 1] = 6
 
-        elif keyboard.read_key() == "c":
+        elif keyboard.read_key() == "c": # for close
 
             if maze[i - 1][j] == 4:
                 maze[i - 1][j] == 5
@@ -374,10 +374,11 @@ def move(maze, original):
             elif maze[i][j + 1] == 4:
                 maze[i][j + 1] == 5
                 original[i][j + 1] == 5
-            else:
-                print("Pas OK")
 
-        elif keyboard.read_key() == "o":
+            else:
+                continue
+
+        elif keyboard.read_key() == "o": # for open
 
             if maze[i - 1][j] == 5:
                 maze[i - 1][j] == 4
@@ -394,9 +395,9 @@ def move(maze, original):
             elif maze[i][j + 1] == 5:
                 maze[i][j + 1] == 4
                 original[i][j + 1] == 4
-            
+
             else:
-                print("Pas OK")
+                continue
 
         maze = actions_prey(maze, original, game_turn)
         game_turn += 1
